@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_02_090102) do
+ActiveRecord::Schema.define(version: 2021_10_02_232719) do
 
   create_table "tasks", charset: "utf8mb4", force: :cascade do |t|
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
+    t.string "varchar"
   end
 
 end
