@@ -49,7 +49,7 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  addapter: postgresql
+  adapter: postgresql
   encoding: unicode
   pool: 5
   database: tasklist_production
