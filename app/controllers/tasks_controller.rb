@@ -5,7 +5,10 @@ class TasksController < ApplicationController
 
   
   def index
-    @pagy,@tasks = pagy(Task.order(id: :desc), items: 10)
+    if logged_in?
+      @task = current_user.tasks.build
+      @pagy,@tasks = pagy(current_user.tasks.order(id: :desc), items: 10)
+    end
   end
 
   def show
@@ -16,12 +19,13 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
 
     if @task.save
       flash[:success] = 'Task が正常に投稿されました'
       redirect_to @task
     else
+      @pagy, @tasks = pagy(current_user.tasks.order(id: :desc), items: 5)
       flash.now[:danger] = 'Task が投稿されませんでした'
       render :new
     end
